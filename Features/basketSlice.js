@@ -11,7 +11,7 @@ const basketSlice = createSlice({
     addToBasket: (state, action) => {
       state.items = [...state.items, action.payload];
     },
-    removeToBasket: (state, action) => {
+    removeFromBasket: (state, action) => {
       const index = state.items.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -25,7 +25,7 @@ const basketSlice = createSlice({
   },
 });
 
-export const { addToBasket, removeToBasket } = basketSlice.actions;
+export const { addToBasket, removeFromBasket } = basketSlice.actions;
 export const selectBasketItems = (state) => state.basket.items;
 export const selectBasketItemWithId = (state, id) =>
   state.basket.items.filter((item) => item.id === id);

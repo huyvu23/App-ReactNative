@@ -11,8 +11,8 @@ import BasketScreen from "./screens/BasketScreen";
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
+    <NavigationContainer>
+      <Provider store={store}>
         <TailwindProvider>
           <Stack.Navigator>
             <Stack.Screen name="Login" component={LoginScreen} />
@@ -25,7 +25,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </TailwindProvider>
-      </NavigationContainer>
-    </Provider>
+      </Provider>
+    </NavigationContainer>
   );
 }

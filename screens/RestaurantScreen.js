@@ -41,11 +41,10 @@ const RestaurantScreen = () => {
         genre,
         address,
         dished,
-
         short_description,
       })
     );
-  });
+  }, [dispatch]);
 
   useLayoutEffect(() => {
     navigation.setOptions({

@@ -4,8 +4,7 @@ import { MinusCircleIcon, PlusCircleIcon } from "react-native-heroicons/solid";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToBasket,
-  removeToBasket,
-  selectBasketItems,
+  removeFromBasket,
   selectBasketItemWithId,
 } from "../Features/basketSlice";
 
@@ -20,7 +19,7 @@ const DishRow = ({ id, name, image, description, price }) => {
 
   const removeItemFromBasket = () => {
     if (!items.length > 0) return;
-    dispatch(removeToBasket({ id }));
+    dispatch(removeFromBasket({ id }));
   };
 
   return (
@@ -38,7 +37,7 @@ const DishRow = ({ id, name, image, description, price }) => {
             <Text className="text-gray-400 mt-2">{price} $</Text>
           </View>
           <View>
-            <Image
+            <Image 
               style={{
                 borderWidth: 1,
                 borderColor: "#F3F3F4",
