@@ -33,11 +33,6 @@ const BasketScreen = () => {
     setGroupItemsInBasket(groupItems);
   }, [items]);
 
-  const removeItem = (id) => {
-    console.log(id);
-    dispatch(removeFromBasket({ id }));
-  };
-
   return (
     <>
       <SafeAreaView className="flex-1 bg-white">
@@ -73,7 +68,52 @@ const BasketScreen = () => {
             </TouchableOpacity>
           </View>
 
-          <ScrollView></ScrollView>
+          <ScrollView className="divide-y divide-gray-200">
+            {Object.entries(groupItemsInBasket).map(([key, items]) => (
+              <View
+                key={key}
+                className="flex-row items-center space-x-3 bg-white py-2 px-5"
+              >
+                <Text className="text-[#00CCBB]">{items.length} x</Text>
+
+                <Text className="flex-1">{items[0]?.name}</Text>
+                <Text className="text-gray-600">{items[0]?.price} $</Text>
+                <TouchableOpacity>
+                  <Text
+                    className="text-[#00CCBB] text-xs"
+                    onPress={() => dispatch(removeFromBasket({ id: key }))}
+                  >
+                    Remove
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ))}
+          </ScrollView>
+
+          {/* ======================= */}
+          <View className="p-5 bg-white mt-5 space-y-4">
+            <View className="flex-row justify-between">
+              <Text className="text-gray-400">Subtotal</Text>
+              <Text className="text-gray-400">{basketTotal} $</Text>
+            </View>
+            <View className="flex-row justify-between">
+              <Text className="text-gray-400">Delivery Fee</Text>
+              <Text className="text-gray-400">5 $</Text>
+            </View>
+            <View className="flex-row justify-between">
+              <Text>Order Total</Text>
+              <Text className="font-extrabold">{basketTotal + 5} $</Text>
+            </View>
+
+            <TouchableOpacity
+              className="rounded-lg bg-[#00CCBB] p-4"
+              onPress={() => navigation.navigate("PreparingOrderScreen")}
+            >
+              <Text className="text-center text-white text-lg font-bold">
+                Place Order
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </SafeAreaView>
     </>
