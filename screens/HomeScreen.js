@@ -19,10 +19,11 @@ import FeaturedRow from "../components/FeaturedRow";
 import LoginScreen from "./LoginScreen";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserToken, setSignOut } from "../Features/userSlice";
-
+import { AsyncStorage } from "react-native";
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const userToken = useSelector(selectUserToken);
+  console.log("token:", userToken);
   const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
