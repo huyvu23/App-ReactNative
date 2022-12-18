@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, Button, Pressable } from "react-native";
+import { View, Text, Image, TextInput, Button, Alert } from "react-native";
 import React from "react";
 import { Formik } from "formik";
 import { useNavigation } from "@react-navigation/native";
@@ -19,7 +19,9 @@ const SignIn = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result) {
+        if (result.id == null) {
+          Alert.alert("Username hoặc mật khẩu không đúng !");
+        } else {
           dispatch(
             setUserLogin({
               name: result.firstName,
@@ -27,8 +29,8 @@ const SignIn = () => {
               photo: result.image,
             })
           );
+          navigation.navigate("Home");
         }
-        navigation.navigate("Home");
       });
   };
   return (
